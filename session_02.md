@@ -137,6 +137,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
 | **Session Fixation** | إجبار المستخدم يستخدم Session ID محدد مسبقاً | تجديد الـ Session ID بعد الـ Login |
 | **Replay Attacks** | إعادة استخدام Request قديم | Timestamps + Nonces |
 
+```السيناريو لتوضيح فكرة الSession Fixation:
+الهاكر يفتح الموقع ويحصل على Session ID (وليكن 123).
+
+يبعت لك رابط للموقع فيه الـ ID ده: http://site.com?sid=123.
+
+أنت تفتح الرابط وتسجل دخولك (Login) بحسابك الحقيقي.
+
+الـ Session ID اللي هو 123 بقى دلوقتي مرتبط بحسابك أنت.
+
+الهاكر يستخدم نفس الـ ID ويدخل على حسابك وكأنه أنت
+```
 **إجراءات الحماية:**
 - نقل الـ Session Data عبر HTTPS حصراً
 - تعيين Cookie Flags الصحيحة: `Secure`, `HttpOnly`, `SameSite`
