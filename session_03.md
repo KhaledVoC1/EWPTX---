@@ -1,11 +1,11 @@
-# الجلسة 3: OWASP WSTG Authentication Tests + Username Enumeration + Weak Password Policy
+# الجزء 3: OWASP WSTG Authentication Tests + Username Enumeration + Weak Password Policy
 ## Slides 31 → 45
 
 ---
 
 ## Slide 31-32: جدول اختبارات OWASP WSTG للـ Authentication
 
-في الجلسة اللي فاتت اتعرفنا على OWASP WSTG كدليل منهجي. دلوقتي هنشوف الجدول الكامل لاختبارات الـ Authentication — ده هيبقى المرجع بتاعنا لباقي الكورس.
+في الجزء اللي فات اتعرفنا على OWASP WSTG كدليل منهجي. دلوقتي هنشوف الجدول الكامل لاختبارات الـ Authentication — ده هيبقى المرجع بتاعنا لباقي الكورس.
 
 ### الجدول الكامل:
 
@@ -336,7 +336,7 @@ aaa, aab, aac, ... zzz
 | **تم تخطي أمان تسجيل الدخول** | Critical | وصول غير مصرح به للحسابات |
 
 ### كيفية كتابة الـ Finding في التقرير:
-
+### انا كاتب بالعربي للتوضيح ولكن لازم الreport يكون بالانجليزي
 ```
 Title: Weak Password Policy Allows Common Passwords
 Severity: High
@@ -424,7 +424,7 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt \
 
 ---
 
-## ملخص الجلسة التالتة
+## ملخص الجزء التالت 
 
 | المفهوم | الشرح | الربط بالـ OWASP |
 |---------|-------|-----------------|
@@ -436,4 +436,4 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt \
 | **Dictionary Attack** | تجربة قائمة باسوردات شائعة | أول طريقة لاستغلال Weak Policy |
 | **Brute Force Attack** | تجربة كل الاحتمالات | أبطأ بس أشمل |
 
-> الجلسة الجاية هنتكلم عن **تخطي الـ CAPTCHA** (WSTG-ATHN-03) و**تجاوز مخطط المصادقة** (WSTG-ATHN-04) — وهي من أخطر الثغرات اللي ممكن تلاقيها.
+> الجزء الجاي هنتكلم عن **تخطي الـ CAPTCHA** (WSTG-ATHN-03) و**تجاوز مخطط المصادقة** (WSTG-ATHN-04) — وهي من أخطر الثغرات اللي ممكن تلاقيها.
