@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EWPTX</title>
+  <title>� Pentesting Course Notes</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/http.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+  <!-- Mermaid.js -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 
   <style>
     :root {
@@ -1470,7 +1472,7 @@
     <ul class="sidebar-list" id="fileList"></ul>
 
     <div class="sidebar-footer">
-      <span>By KhaledVoCx</span>
+      <span>Built with 💜 for Pentesters</span>
     </div>
   </div>
 
@@ -1563,8 +1565,19 @@
         icon: "💉",
         description: "هجمات الحقن المتقدمة — SQL Injection, NoSQL, LDAP, Command Injection, SSTI",
         color: "#f43f5e",
-        ready: false,
-        sessions: []
+        ready: true,
+        sessions: [
+          { name: "part_01.md", label: "مقدمة + أساسيات SQLi", emoji: "1️⃣" },
+          { name: "part_02.md", label: "أنواع SQLi + منهجية الاختبار", emoji: "2️⃣" },
+          { name: "part_03.md", label: "Error-Based & Union-Based", emoji: "3️⃣" },
+          { name: "part_04.md", label: "Blind SQLi (Boolean/Time)", emoji: "4️⃣" },
+          { name: "part_05.md", label: "SQLMap Automation", emoji: "5️⃣" },
+          { name: "part_06.md", label: "OOB & Second-Order SQLi", emoji: "6️⃣" },
+          { name: "part_07.md", label: "NoSQL Injection", emoji: "7️⃣" },
+          { name: "part_08.md", label: "LDAP Injection", emoji: "8️⃣" },
+          { name: "part_09.md", label: "ORM Injection", emoji: "9️⃣" },
+          { name: "part_10.md", label: "XML & XXE Injection", emoji: "🔟" },
+        ]
       },
       {
         id: "api",
@@ -1734,6 +1747,7 @@
         }
         await new Promise(r => setTimeout(r, 50));
         output.innerHTML = '<div class="markdown-body page-enter">' + marked.parse(text) + '</div>';
+        renderMermaid();
         addCopyButtons();
         document.getElementById('contentArea').scrollTop = 0;
       } catch (e) {
@@ -1974,6 +1988,25 @@
       currentFontSize = Math.min(22, Math.max(11, currentFontSize + delta));
       document.querySelector('.content').style.fontSize = currentFontSize + 'px';
       localStorage.setItem('fontSize', currentFontSize);
+    }
+
+    // --- Mermaid Rendering ---
+    mermaid.initialize({ startOnLoad: false, theme: 'dark', securityLevel: 'loose' });
+
+    function renderMermaid() {
+      const blocks = document.querySelectorAll('.markdown-body pre code.language-mermaid');
+      blocks.forEach((block, index) => {
+        const pre = block.parentElement;
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = block.textContent;
+        div.id = 'mermaid-' + index;
+        pre.replaceWith(div);
+      });
+
+      mermaid.run({
+        querySelector: '.mermaid'
+      });
     }
 
     // --- Copy Code Button ---
