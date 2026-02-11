@@ -114,7 +114,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
 | **URL Parameter** | `example.com/profile?sid=abc123` | ضعيف جداً — الـ Session ID بيبان في الـ URL |
 | **HTTP Header** | `Authorization: Bearer abc123` | جيد — شائع مع APIs |
 
-> تخزين الـ Session ID في الـ URL ده من أخطر الأخطاء لأنه بيظهر في الـ Browser History و Referer Headers والـ Server Logs. يعني أي حد يقدر يشوفه ويستخدمه.
+> تخزين الـ Session ID في الـ URL ده زمان كان شئ عادي ولكن دلوقتي بقي خطر لأنه بيظهر في الـ Browser History و Referer Headers والـ Server Logs. يعني أي حد يقدر يشوفه ويستخدمه و بالمناسبة كنت لاقيت ثغرة قبل كدا كان الtoken الخاص بالreset password في الurl و من الnetwork tab لاقيت ان فيه Third-Party بيوصلها الريكوست والUrl فيه الToken اتقبلت وقتها Low اعتقد دلوقتي بتتصنف انها Info.
 
 ### 2. Session Maintenance (صيانة الجلسة)
 
