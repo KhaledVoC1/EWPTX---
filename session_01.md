@@ -279,41 +279,6 @@ username=ahmed&password=P@ssw0rd123!
 
 ---
 
-## Slide 16 (تكملة): أنواع الـ Authentication - الجزء التاني
-
-### 3. Two-Factor Authentication (2FA)
-
-حالة خاصة من الـ MFA — بيستخدم **عاملين بالظبط** مش أكتر. الشائع: باسورد + كود SMS أو باسورد + Google Authenticator.
-
-**ليه بنفرده بالذكر؟**
-لأنه الأكتر انتشاراً. معظم المواقع الكبيرة (Gmail، Facebook، Twitter) بتدعم 2FA. وبالتالي هو الهدف الأكتر شيوعاً في اختبارات الاختراق.
-
-### 4. Token-Based Authentication
-
-بدل ما السيرفر يحفظ Session عنده في الذاكرة أو الداتابيز، بيديك **Token** (زي تذكرة) فيها كل بياناتك. أنت بتبعت التذكرة مع كل Request والسيرفر بيقرأها وبيعرف مين أنت.
-
-أشهر الأنواع:
-- **JWT (JSON Web Token)** — الأكتر انتشاراً في APIs الحديثة
-- **OAuth Tokens** — بتتستخدم للتفويض مع Third Parties
-
-### 5. Single Sign-On (SSO)
-
-لما موقع يقولك "Sign in with Google" أو "Continue with Facebook" — ده SSO. بتسجل دخول في مكان واحد وبتدخل بيه في أماكن كتير.
-
-**البروتوكولات:**
-- **SAML** (Security Assertion Markup Language) — الأقدم، بيتستخدم في الشركات
-- **OAuth 2.0** — الأحدث والأكتر انتشاراً
-
-### 6. One-Time Passwords (OTP)
-
-كود مؤقت بييجي على الموبايل أو الإيميل (صالح 30 ثانية أو دقيقة). بيتستخدم كعامل إضافي مع الـ Password.
-
-**نوعين:**
-- **TOTP (Time-based)** — بيتغير كل 30 ثانية. Google Authenticator بيشتغل بالنظام ده.
-- **HOTP (HMAC-based)** — بيتغير بعد كل استخدام.
-
----
-
 ## ملخص الجزء الأولى
 
 | المفهوم | الشرح | الصلة بالـ Pentesting |
@@ -322,8 +287,5 @@ username=ahmed&password=P@ssw0rd123!
 | **Authorization** | تحديد صلاحيات المستخدم | بنختبره بعد ما نسجل دخول |
 | **Password Auth** | يوزر وباسورد | Brute Force, Dictionary, Credential Stuffing |
 | **MFA / 2FA** | أكتر من عامل للتحقق | SIM Swapping, Real-Time Phishing, Replay |
-| **Token-Based** | JWT أو OAuth بدل Sessions | Token Manipulation, None Algorithm |
-| **SSO** | تسجيل دخول واحد لكل حاجة | SAML Attacks, OAuth Misconfigurations |
-| **OTP** | كود مؤقت لمرة واحدة | OTP Interception, Brute Force |
 
 > الجزء الجاي هنتكلم عن **Session Management** — إزاي التطبيق بيفتكرك بعد ما تسجل دخول، وإيه الفرق بين الـ Sessions والـ Tokens، وهنبدأ ندخل في **منهجية OWASP WSTG** اللي هتكون الخريطة بتاعتنا لباقي الكورس.
