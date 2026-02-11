@@ -136,7 +136,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
 | **Session Hijacking** | سرقة الـ Session ID والتنكر كالمستخدم الأصلي | HTTPS + Secure Cookie Flag |
 | **Session Fixation** | إجبار المستخدم يستخدم Session ID محدد مسبقاً | تجديد الـ Session ID بعد الـ Login |
 | **Replay Attacks** | إعادة استخدام Request قديم | Timestamps + Nonces |
-**`السيناريو لتوضيح مبدأ الSession Fixation:**
+
+**السيناريو لتوضيح مبدأ الSession Fixation:**
 - الهاكر يفتح الموقع ويطلع لنفسه "رقم جلسة" (Session ID) وليكن 123.
 - يبعتلك رابط الموقع وفيه الرقم ده عشان يجبرك تدخل بيه: http://site.com?sid=123.
 - أنت تفتح الرابط وتكتب الباسورد بتاعك وتسجل دخول عادي.
