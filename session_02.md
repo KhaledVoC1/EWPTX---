@@ -158,7 +158,7 @@ Set-Cookie: SESSIONID=abc123; Secure; HttpOnly; SameSite=Strict; Path=/; Max-Age
 - `HttpOnly` → JavaScript ما يقدرش يقرأها (حماية من XSS)
 - `SameSite=Strict` → ما تتبعتش مع Cross-Site Requests (حماية من CSRF)
 
-> كل الـ Flags دي هنتعمق فيها بالتفصيل في الجلسات الجاية لما نوصل لـ Session Management Testing.
+> كل الـ Flags دي هنتعمق فيها بالتفصيل في الاجزاء الجاية لما نوصل لـ Session Management Testing.
 
 ### 4. Session Termination (إنهاء الجلسة)
 
@@ -185,25 +185,25 @@ Set-Cookie: SESSIONID=abc123; Secure; HttpOnly; SameSite=Strict; Path=/; Max-Age
 
 ```
 ┌──────────────────────────────────────────────────┐
-│ 1. Authentication (إثبات الهوية)                 │
-│    → المستخدم بيقدم الـ Credentials              │
+│ 1. Authentication (إثبات الهوية)                │
+│    → المستخدم بيقدم الـ Credentials             │
 │    → السيرفر بيتأكد منها                        │
-│                    ↓                              │
-│ 2. Session Creation (إنشاء الجلسة)               │
+│                    ↓                             │
+│ 2. Session Creation (إنشاء الجلسة)              │
 │    → السيرفر بيولّد Session ID فريد              │
-│    → بيربطه بمعلومات المستخدم                    │
-│                    ↓                              │
-│ 3. Session Maintenance (استمرارية الهوية)         │
-│    → كل Request بييجي مع الـ Session ID           │
-│    → السيرفر بيعرف مين ده من غير Login تاني      │
-│                    ↓                              │
-│ 4. Session Security (تأمين الجلسة)               │
-│    → حماية الـ Session ID من السرقة               │
-│    → HTTPS + Secure Cookies + Timeouts            │
-│                    ↓                              │
-│ 5. Session Termination (إنهاء الجلسة)            │
+│    → بيربطه بمعلومات المستخدم                  │
+│                    ↓                             │
+│ 3. Session Maintenance (استمرارية الهوية)       │
+│    → كل Request بييجي مع الـ Session ID         │
+│    → السيرفر بيعرف مين ده من غير Login تاني    │
+│                    ↓                             │
+│ 4. Session Security (تأمين الجلسة)              │
+│    → حماية الـ Session ID من السرقة             │ 
+│    → HTTPS + Secure Cookies + Timeouts           │
+│                    ↓                             │
+│ 5. Session Termination (إنهاء الجلسة)           │
 │    → Logout أو Timeout                           │
-│    → حذف الـ Session من السيرفر                   │
+│    → حذف الـ Session من السيرفر                 │
 │    → لو عايز يرجع → يسجل دخول من الأول          │
 └──────────────────────────────────────────────────┘
 ```
@@ -278,7 +278,7 @@ Set-Cookie: SESSIONID=authenticated_abc; Path=/
 5. المهاجم بيفتح الموقع بنفس الـ Session ID → يدخل كأنه الضحية!
 ```
 
-> هنتكلم عن الـ Session Fixation بتفصيل كامل في جلسة لاحقة.
+> هنتكلم عن الـ Session Fixation بتفصيل كامل في جزء تاني.
 
 ---
 
@@ -340,11 +340,11 @@ Set-Cookie: SESSIONID=authenticated_abc; Path=/
 | **WSTG-ATHN-07** | Weak Password Policy | هل الموقع بيقبل باسوردات ضعيفة؟ |
 | **WSTG-ATHN-08** | Weak Auth in Alternative Channels | هل الـ API أو تطبيق الموبايل عندهم حماية أضعف؟ |
 
-> الجدول ده هيبقى **الخريطة بتاعتنا** لباقي الكورس. كل جلسة هنتعمق في واحد أو أكتر من الاختبارات دي. في الجلسة الجاية هنبدأ بالـ Username Enumeration والـ Weak Password Policy.
+> الجدول ده هيبقى **الخريطة بتاعتنا** لباقي الكورس. كل جزء هنتعمق في واحد أو أكتر من الاختبارات دي. في الجزء  الجاية هنبدأ بالـ Username Enumeration والـ Weak Password Policy.
 
 ---
 
-## ملخص الجلسة التانية
+## ملخص الجزء التاني
 
 | المفهوم | الشرح | الأهمية |
 |---------|-------|---------|
@@ -356,4 +356,4 @@ Set-Cookie: SESSIONID=authenticated_abc; Path=/
 | **Auth Testing** | فحص واستغلال ثغرات تسجيل الدخول | الهدف الأساسي من الكورس |
 | **OWASP WSTG** | 8 اختبارات محددة للـ Authentication | الخريطة اللي هنمشي عليها |
 
-> الجلسة الجاية هنبدأ ندخل في أول اختبارات OWASP WSTG الفعلية: **Username Enumeration** و**Testing for Weak Password Policy** — بأدوات وأمثلة عملية.
+> الجزء الجاي هنبدأ ندخل في أول اختبارات OWASP WSTG الفعلية: **Username Enumeration** و**Testing for Weak Password Policy** — بأدوات وأمثلة عملية.
