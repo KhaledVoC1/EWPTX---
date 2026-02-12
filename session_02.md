@@ -5,7 +5,7 @@
 
 ## Slide 16-17: تكملة أنواع الـ Authentication Mechanisms
 
-في الجلسة اللي فاتت اتكلمنا عن Password-Based Auth و MFA. دلوقتي نكمل باقي الأنواع:
+في الجزء اللي فات اتكلمنا عن Password-Based Auth و MFA. دلوقتي نكمل باقي الأنواع:
 
 ### Two-Factor Authentication (2FA)
 
