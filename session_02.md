@@ -1,11 +1,11 @@
-# الجلسة 2: Session Management + منهجية اختبار الـ Authentication
+# الجزء 2: Session Management + منهجية اختبار الـ Authentication
 ## Slides 16 → 30
 
 ---
 
 ## Slide 16-17: تكملة أنواع الـ Authentication Mechanisms
 
-في الجزء اللي فات اتكلمنا عن Password-Based Auth و MFA. دلوقتي نكمل باقي الأنواع:
+في الجزء اللي فاتت اتكلمنا عن Password-Based Auth و MFA. دلوقتي نكمل باقي الأنواع:
 
 ### Two-Factor Authentication (2FA)
 
@@ -183,29 +183,39 @@ Set-Cookie: SESSIONID=abc123; Secure; HttpOnly; SameSite=Strict; Path=/; Max-Age
 
 ### كيف بيشتغلوا مع بعض — خطوة بخطوة:
 
-```
-┌──────────────────────────────────────────────────┐
-│ 1. Authentication (إثبات الهوية)                │
-│    → المستخدم بيقدم الـ Credentials             │
-│    → السيرفر بيتأكد منها                        │
-│                    ↓                             │
-│ 2. Session Creation (إنشاء الجلسة)              │
-│    → السيرفر بيولّد Session ID فريد              │
-│    → بيربطه بمعلومات المستخدم                  │
-│                    ↓                             │
-│ 3. Session Maintenance (استمرارية الهوية)       │
-│    → كل Request بييجي مع الـ Session ID         │
-│    → السيرفر بيعرف مين ده من غير Login تاني    │
-│                    ↓                             │
-│ 4. Session Security (تأمين الجلسة)              │
-│    → حماية الـ Session ID من السرقة             │ 
-│    → HTTPS + Secure Cookies + Timeouts           │
-│                    ↓                             │
-│ 5. Session Termination (إنهاء الجلسة)           │
-│    → Logout أو Timeout                           │
-│    → حذف الـ Session من السيرفر                 │
-│    → لو عايز يرجع → يسجل دخول من الأول          │
-└──────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    %% تعريف العقد (Nodes) مع استخدام <br> للسطور الجديدة
+    Auth("<b>1. Authentication (إثبات الهوية)</b><br>المستخدم بيقدم الـ Credentials<br>السيرفر بيتأكد منها")
+    
+    Create("<b>2. Session Creation (إنشاء الجلسة)</b><br>السيرفر بيولّد Session ID فريد<br>بيربطه بمعلومات المستخدم")
+    
+    Maintain("<b>3. Session Maintenance (استمرارية الهوية)</b><br>كل Request بييجي مع الـ Session ID<br>السيرفر بيعرف مين ده من غير Login تاني")
+    
+    Secure("<b>4. Session Security (تأمين الجلسة)</b><br>حماية الـ Session ID من السرقة<br>HTTPS + Secure Cookies + Timeouts")
+    
+    Term("<b>5. Session Termination (إنهاء الجلسة)</b><br>Logout أو Timeout<br>حذف الـ Session من السيرفر")
+
+    %% العلاقات والأسهم
+    Auth --> Create
+    Create --> Maintain
+    Maintain --> Secure
+    Secure --> Term
+    
+    %% سهم العودة
+    Term -.->|"لو عايز يرجع -> يسجل دخول من الأول"| Auth
+
+    %% تنسيق الألوان (ستايل نيون عصري للخلفيات الغامقة)
+    classDef default fill:#1a1a1a,stroke:#fff,stroke-width:2px,color:#fff;
+    
+    style Auth fill:#0d2b45,stroke:#00bcd4,stroke-width:2px,color:#fff
+    style Create fill:#1b3a25,stroke:#00e676,stroke-width:2px,color:#fff
+    style Maintain fill:#3e2723,stroke:#ffab00,stroke-width:2px,color:#fff
+    style Secure fill:#2a0f3d,stroke:#d500f9,stroke-width:2px,color:#fff
+    style Term fill:#380d0d,stroke:#ff1744,stroke-width:2px,color:#fff
+    
+    %% تنسيق الأسهم لتكون فاتحة
+    linkStyle default stroke:#888,stroke-width:2px;
 ```
 
 > الخلاصة: الـ Authentication بيثبت **مين** المستخدم، والـ Session Management بيحافظ على الهوية دي عبر تفاعلاته مع التطبيق. الاتنين مكملين بعض — لو أي واحد فيهم ضعيف، الأمان كله بيتأثر.
@@ -234,13 +244,51 @@ Set-Cookie: SESSIONID=abc123; Secure; HttpOnly; SameSite=Strict; Path=/; Max-Age
 
 السلايد دي فيها رسم بياني يوضح دورة حياة الـ Session:
 
+```mermaid
+graph TD
+    %% المرحلة الأولى: الدخول
+    Login("👤 User Login<br>(Enter Credentials)")
+    Create("⚙️ Server Creates Session<br>(Generate Session ID)")
+    Cookie("🍪 Session ID sent to User<br>(Via Cookie)")
+
+    %% المرحلة الثانية: التصفح
+    Browse("🌍 User Browses<br>(Sends Session ID with Request)")
+    Validate("✅ Server Validates Session<br>(Check active ID)")
+
+    %% المرحلة الثالثة: الخروج
+    Logout("❌ User Logout / Timeout")
+    Destroy("🗑️ Session Destroyed")
+
+    %% العلاقات
+    Login --> Create
+    Create --> Cookie
+    Cookie --> Browse
+    Browse --> Validate
+    
+    %% حلقة التصفح (Valid Session)
+    Validate -->|Valid| Browse
+    
+    %% الخروج
+    Validate -->|Invalid / Exit| Logout
+    Logout --> Destroy
+    
+    %% العودة للبداية
+    Destroy -.->|User must Login again| Login
+
+    %% تنسيق الألوان (Neon Dark Mode)
+    classDef default fill:#1a1a1a,stroke:#fff,stroke-width:1px,color:#fff;
+    
+    style Login fill:#0d2b45,stroke:#00bcd4,stroke-width:2px
+    style Create fill:#1b3a25,stroke:#00e676,stroke-width:2px
+    style Cookie fill:#3e2723,stroke:#ffab00,stroke-width:2px
+    style Browse fill:#2a0f3d,stroke:#d500f9,stroke-width:2px
+    style Validate fill:#1a237e,stroke:#2979ff,stroke-width:2px
+    style Logout fill:#380d0d,stroke:#ff1744,stroke-width:2px
+    style Destroy fill:#212121,stroke:#9e9e9e,stroke-width:2px,stroke-dasharray: 5 5
+    
+    linkStyle default stroke:#888,stroke-width:2px;
 ```
-User → [Login] → Server creates Session → [Session ID sent to User via Cookie]
-                                                    ↓
-User browses → [Session ID sent with each Request] → Server validates Session
-                                                    ↓
-User Logout / Timeout → [Session Destroyed] → User must Login again
-```
+
 
 ---
 
