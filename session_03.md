@@ -115,19 +115,72 @@ Username: admin            → Response: 200ms   (السيرفر راح يتحق
 
 السلايد دي فيها رسم بياني يوضح عملية الـ Username Enumeration:
 
+
+```mermaid
+graph TD
+    %% العقدة الأساسية: المهاجم
+    Attacker("🕵️‍♂️ <b>المهاجم (Attacker)</b><br>بيجرب Usernames عشوائية")
+
+    %% السيرفر
+    System("🖥️ <b>النظام (System)</b><br>بيتحقق من قاعدة البيانات")
+
+    %% الطلبات (Requests)
+    Req1("Request 1: user=ahmed")
+    Req2("Request 2: user=sara")
+    Req3("Request 3: user=admin")
+    Req4("Request 4: user=test123")
+
+    %% الردود (Responses)
+    ResExist("⚠️ <b>Response: 'Invalid Password'</b><br>(معناه اليوزر موجود)")
+    ResNoExist("❌ <b>Response: 'Invalid User'</b><br>(معناه اليوزر مش موجود)")
+
+    %% النتيجة
+    Result("✅ <b>النتيجة (Enumerated Users)</b><br>عرفنا إن admin و ahmed موجودين")
+    Next("🔥 <b>الخطوة الجاية</b><br>Brute Force Attack عليهم")
+
+    %% العلاقات - المسار الأول (مستخدمين موجودين)
+    Attacker --> Req1 & Req3
+    Req1 & Req3 --> System
+    System ==>|User Found| ResExist
+    ResExist --> Result
+
+    %% العلاقات - المسار الثاني (مستخدمين غير موجودين)
+    Attacker --> Req2 & Req4
+    Req2 & Req4 --> System
+    System -.->|User Not Found| ResNoExist
+
+    %% الخطوة النهائية
+    Result --> Next
+
+    %% --- تنسيق الألوان (Neon Dark Mode) ---
+    classDef default fill:#1a1a1a,stroke:#fff,stroke-width:1px,color:#fff;
+
+    %% المهاجم (لون أحمر غامق)
+    style Attacker fill:#3b0000,stroke:#ff2a2a,stroke-width:2px
+    
+    %% الطلبات (لون أزرق باهت)
+    style Req1 fill:#0d1b2a,stroke:#415a77,stroke-width:1px
+    style Req2 fill:#0d1b2a,stroke:#415a77,stroke-width:1px
+    style Req3 fill:#0d1b2a,stroke:#415a77,stroke-width:1px
+    style Req4 fill:#0d1b2a,stroke:#415a77,stroke-width:1px
+
+    %% السيرفر (لون بنفسجي)
+    style System fill:#240046,stroke:#7b2cbf,stroke-width:2px
+
+    %% الردود (أصفر للخطر، رصاصي للتجاهل)
+    style ResExist fill:#3e2723,stroke:#ffab00,stroke-width:2px
+    style ResNoExist fill:#212121,stroke:#616161,stroke-width:1px,stroke-dasharray: 5 5
+
+    %% النتيجة (أخضر هاكر)
+    style Result fill:#002b15,stroke:#00e676,stroke-width:2px
+    
+    %% الخطوة القادمة (برتقالي ناري)
+    style Next fill:#4a1c00,stroke:#ff6d00,stroke-width:2px
+
+    %% تنسيق الخطوط الرابطة
+    linkStyle default stroke:#888,stroke-width:2px;
 ```
-┌─────────────────────────────────────────────────────────┐
-│ المهاجم: بيبعت Requests بـ Usernames مختلفة           │
-│                                                         │
-│  Request 1: user=ahmed     → Response: "Invalid pass"   │
-│  Request 2: user=sara      → Response: "Invalid user"   │
-│  Request 3: user=admin     → Response: "Invalid pass"   │
-│  Request 4: user=test123   → Response: "Invalid user"   │
-│                                                         │
-│ النتيجة: ahmed و admin موجودين في النظام!              │
-│ الخطوة الجاية: Brute Force على الحسابات المكتشفة      │
-└─────────────────────────────────────────────────────────┘
-```
+
 
 ### أدوات بنستخدمها:
 
