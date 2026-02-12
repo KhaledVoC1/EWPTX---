@@ -1,12 +1,7 @@
 # 🗺️ خارطة الطريق (Roadmap) - كورس Authentication & Session Management Testing
-
-> **المحاضر:** Alexis Ahmed - Offensive Security/Red Team Instructor @INE  
-> **عدد السلايدات:** 200 سلايد  
-> **التقسيم:** 14 جلسة × ~15 سلايد لكل جلسة
-
 ---
 
-## 📦 الجلسة 1: مقدمة الكورس + أساسيات الـ Authentication (Slides 1–15)
+## 📦 الجزء 1: مقدمة الكورس + أساسيات الـ Authentication (Slides 1–15)
 | # | الموضوع |
 |---|---------|
 | 1 | عنوان الكورس: Authentication & Session Management Testing |
@@ -24,7 +19,7 @@
 
 ---
 
-## 📦 الجلسة 2: Session Management + منهجية اختبار الـ Authentication (Slides 16–30)
+## 📦 الجزء 2: Session Management + منهجية اختبار الـ Authentication (Slides 16–30)
 | # | الموضوع |
 |---|---------|
 | 16-17 | أنواع 2FA, Token-Based Auth, SSO, OTP |
@@ -36,7 +31,7 @@
 
 ---
 
-## 📦 الجلسة 3: OWASP WSTG + Username Enumeration (Slides 31–45)
+## 📦 الجزء 3: OWASP WSTG + Username Enumeration (Slides 31–45)
 | # | الموضوع |
 |---|---------|
 | 31-32 | جدول اختبارات OWASP WSTG للـ Authentication (ATHN-01 إلى ATHN-08) |
@@ -47,7 +42,7 @@
 
 ---
 
-## 📦 الجلسة 4: CAPTCHA Bypass + Authentication Schema Bypass (Slides 46–61)
+## 📦 الجزء 4: CAPTCHA Bypass + Authentication Schema Bypass (Slides 46–61)
 | # | الموضوع |
 |---|---------|
 | 46-48 | Testing for Weak Lockout Mechanisms (WSTG-ATHN-03) |
@@ -58,7 +53,7 @@
 
 ---
 
-## 📦 الجلسة 5: Session Management & Session IDs بالتفصيل (Slides 62–77)
+## 📦 الجزء 5: Session Management & Session IDs بالتفصيل (Slides 62–77)
 | # | الموضوع |
 |---|---------|
 | 62-64 | مراجعة Session Management + رسم توضيحي |
@@ -69,7 +64,7 @@
 
 ---
 
-## 📦 الجلسة 6: Cookie Parameters + Cookie Tampering (Slides 78–92)
+## 📦 الجزء 6: Cookie Parameters + Cookie Tampering (Slides 78–92)
 | # | الموضوع |
 |---|---------|
 | 78-80 | Expiration/Max-Age + أمثلة عملية |
@@ -80,7 +75,7 @@
 
 ---
 
-## 📦 الجلسة 7: Session Hijacking & Session Fixation (Slides 93–106)
+## 📦 الجزء 7: Session Hijacking & Session Fixation (Slides 93–106)
 | # | الموضوع |
 |---|---------|
 | 93-96 | Session Hijacking vs Session Fixation: التعريف والفرق |
@@ -90,7 +85,7 @@
 
 ---
 
-## 📦 الجلسة 8: CSRF + مقدمة Token-Based Authentication (Slides 107–121)
+## 📦 الجزء 8: CSRF + مقدمة Token-Based Authentication (Slides 107–121)
 | # | الموضوع |
 |---|---------|
 | 107-111 | Cross-Site Request Forgery (CSRF): التعريف، المنهجية، التأثير |
@@ -100,7 +95,7 @@
 
 ---
 
-## 📦 الجلسة 9: Token Placement + JWT بالتفصيل (Slides 122–136)
+## 📦 الجزء 9: Token Placement + JWT بالتفصيل (Slides 122–136)
 | # | الموضوع |
 |---|---------|
 | 122-124 | Cookies, Custom Headers, Best Practices لوضع Tokens |
@@ -111,7 +106,7 @@
 
 ---
 
-## 📦 الجلسة 10: JWT Structure + Claims + None Algorithm (Slides 137–153)
+## 📦 الجزء 10: JWT Structure + Claims + None Algorithm (Slides 137–153)
 | # | الموضوع |
 |---|---------|
 | 137-139 | تفاصيل JWT: Header, Payload, Signature |
@@ -121,7 +116,7 @@
 
 ---
 
-## 📦 الجلسة 11: Exposed Claims + مقدمة OAuth (Slides 154–168)
+## 📦 الجزء 11: Exposed Claims + مقدمة OAuth (Slides 154–168)
 | # | الموضوع |
 |---|---------|
 | 154-155 | Exposed Claims + Lab Demo |
@@ -130,7 +125,7 @@
 
 ---
 
-## 📦 الجلسة 12: OAuth Attacks المتقدمة + سيناريو هجوم حقيقي (Slides 169–180)
+## 📦 الجزء 12: OAuth Attacks المتقدمة + سيناريو هجوم حقيقي (Slides 169–180)
 | # | الموضوع |
 |---|---------|
 | 169-172 | Weak Tokens, Insecure Storage, Refresh Token Not Bound to Client |
@@ -138,7 +133,7 @@
 
 ---
 
-## 📦 الجلسة 13: تخطي المصادقة الثنائية - 2FA Bypass (Slides 181–193)
+## 📦 الجزء 13: تخطي المصادقة الثنائية - 2FA Bypass (Slides 181–193)
 | # | الموضوع |
 |---|---------|
 | 181-184 | تعريف 2FA وأنواعها: SMS, Email, TOTP, Authenticator Apps |
@@ -149,7 +144,7 @@
 
 ---
 
-## 📦 الجلسة 14: ملخص الكورس + الخطوات القادمة (Slides 194–200)
+## 📦 الجزء 14: ملخص الكورس + الخطوات القادمة (Slides 194–200)
 | # | الموضوع |
 |---|---------|
 | 194-196 | ملخص شامل: Key Concepts + Learning Outcomes Recap |
@@ -159,7 +154,7 @@
 
 ---
 
-## 📊 إحصائيات سريعة
+##  إحصائيات سريعة
 
 | العنصر | العدد |
 |--------|-------|
@@ -170,4 +165,3 @@
 
 ---
 
-> **⏳ الخطة:** هنبدأ بشرح أول 15 سلايد بالتفصيل لما تقولي **"ابدأ"** 🚀
