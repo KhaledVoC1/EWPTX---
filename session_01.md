@@ -8,11 +8,25 @@
 الكورس ده متخصص في اختبار اختراق **آليات المصادقة (Authentication)** و**إدارة الجلسات (Session Management)** في تطبيقات الويب.
 
 ### مثال كده:
-تخيل إنك Security Guard في بنك. شغلتك مش إنك تحمي البنك — شغلتك إنك **تلاقي الثغرات** في نظام الأمان بتاع البنك قبل ما الهاكر يلاقيها. الكورس ده بيعلمك إزاي تعمل كده بس في تطبيقات الويب.
+تخيل إنك Security Guard في بنك. شغلتك مش إنك تحمي البنك — شغلتك إنك **تلاقي الثغرات** في نظام الأمان بتاع البنك قبل ما اللي نيته وحشة يلاقيها. الكورس ده بيعلمك إزاي تعمل كده بس في تطبيقات الويب.
 
 > هنتعلم إزاي نختبر كل حاجة ليها علاقة بتسجيل الدخول وإدارة الجلسات — من ثغرات الباسوردات الضعيفة لحد تخطي الـ 2FA وكسر الـ JWT.
 
 ---
+
+## Slide 2: المحاضر - Alexis Ahmed
+
+| المعلومة | التفاصيل |
+|----------|----------|
+| **الاسم** | Alexis Ahmed |
+| **المنصب** | Offensive Security / Red Team Instructor في INE |
+| **الدور التاني** | Red Team Lead في HackerSploit |
+| **التخصص** | اختبار اختراق تطبيقات الويب والـ Red Team Operations |
+
+الراجل ده مش بيقرأ من كتاب — ده بيشتغل في المجال فعلياً. HackerSploit من أشهر القنوات على YouTube في مجال الـ Ethical Hacking، وعندها محتوى مجاني يساوي كورسات مدفوعة. لو مشفتهاش قبل كده، تستاهل تعدي عليها.
+
+---
+
 ## Slide 3: Key Concepts - المفاهيم الأساسية
 
 الكورس بيغطي 4 محاور أساسية:
@@ -32,21 +46,62 @@
 
 خريطة المواضيع اللي هنمر عليها في الكورس كله:
 
-```
-1. Authentication & Session Management Testing Methodology
-   └── منهجية OWASP WSTG
+```mermaid
+graph LR
+    %% العقدة الرئيسية
+    Core("🔐 <b>Auth & Session<br>Security Testing</b>")
 
-2. Authentication Testing Techniques
-   └── Username Enumeration, Brute Force, CAPTCHA Bypass, Auth Bypass
+    %% الفروع الرئيسية
+    Sec1("1. Methodology")
+    Sec2("2. Auth Testing")
+    Sec3("3. Session Mgmt")
+    Sec4("4. Token-Based")
+    Sec5("5. 2FA & OTP")
 
-3. Session Management Testing Techniques
-   └── Session Hijacking, Fixation, Cookie Security, CSRF
+    %% التفاصيل الفرعية
+    Det1("📘 <b>OWASP WSTG</b><br>Standard Guide")
+    
+    Det2("🕵️ <b>Techniques</b><br>- Username Enumeration<br>- Brute Force<br>- CAPTCHA Bypass<br>- Auth Bypass")
+    
+    Det3("🍪 <b>Techniques</b><br>- Session Hijacking<br>- Session Fixation<br>- Cookie Security<br>- CSRF")
+    
+    Det4("🎫 <b>JWT & OAuth</b><br>- JWT Attacks<br>- OAuth Flows<br>- Token Manipulation")
+    
+    Det5("📱 <b>Bypass</b><br>- 2FA Bypass<br>- OTP Manipulation")
 
-4. Token-Based Authentication Testing (JWT, OAuth)
-   └── JWT Attacks, OAuth Flows, Token Manipulation
+    %% التوصيلات
+    Core ==> Sec1 & Sec2 & Sec3 & Sec4 & Sec5
+    
+    Sec1 -.-> Det1
+    Sec2 -.-> Det2
+    Sec3 -.-> Det3
+    Sec4 -.-> Det4
+    Sec5 -.-> Det5
 
-5. 2FA & OTP Bypass Techniques
-   └── تخطي المصادقة الثنائية
+    %% --- تنسيق الألوان (Neon Cyberpunk) ---
+    classDef default fill:#1a1a1a,stroke:#fff,stroke-width:1px,color:#fff;
+
+    %% العقدة الرئيسية (ذهبي)
+    style Core fill:#3e2723,stroke:#ffab00,stroke-width:4px,font-size:16px
+
+    %% الفروع (ألوان نيون مختلفة)
+    style Sec1 fill:#001a3d,stroke:#00bcd4,stroke-width:2px
+    style Det1 fill:#0d1b2a,stroke:#00bcd4,stroke-width:1px,stroke-dasharray: 5 5
+
+    style Sec2 fill:#1a0033,stroke:#d500f9,stroke-width:2px
+    style Det2 fill:#1a0033,stroke:#d500f9,stroke-width:1px,stroke-dasharray: 5 5
+
+    style Sec3 fill:#003300,stroke:#00e676,stroke-width:2px
+    style Det3 fill:#002200,stroke:#00e676,stroke-width:1px,stroke-dasharray: 5 5
+
+    style Sec4 fill:#330000,stroke:#ff1744,stroke-width:2px
+    style Det4 fill:#220000,stroke:#ff1744,stroke-width:1px,stroke-dasharray: 5 5
+
+    style Sec5 fill:#331a00,stroke:#ff6d00,stroke-width:2px
+    style Det5 fill:#261400,stroke:#ff6d00,stroke-width:1px,stroke-dasharray: 5 5
+
+    %% تنسيق الخطوط
+    linkStyle default stroke:#666,stroke-width:2px;
 ```
 
 الترتيب ده مش عشوائي — كل موضوع مبني على اللي قبله. الـ Authentication بييجي الأول لأنه الأساس، وبعدين الـ Sessions لأنها بتيجي بعد ما المستخدم يسجل دخول، وبعدين الـ Tokens لأنها البديل الحديث للـ Sessions، وأخيراً الـ 2FA لأنها طبقة إضافية فوق كل اللي فات.
@@ -58,7 +113,7 @@
 بعد ما تخلص الكورس، المفروض تقدر:
 
 **1. تفهم Authentication و Session Management:**
-مش بس تعرف يعني إيه Authentication — لأ، تفهم إزاي بيشتغل ورا الكواليس وانا ان شاء الله هحطلك شوية امثلة من عندي علي كام tip، إيه العلاقة بينه وبين الـ Sessions، وفين الأماكن اللي ممكن تبقى فيها ثغرات.
+مش بس تعرف يعني إيه Authentication — لأ، تفهم إزاي بيشتغل تحت الكواليس، إيه العلاقة بينه وبين الـ Sessions، وفين الأماكن اللي ممكن تبقى فيها ثغرات.
 
 **2. تختبر الـ Authentication بشكل عملي:**
 تعرف تعمل Username Enumeration على Login Page، تختبر الـ Password Policy، تتخطى الـ CAPTCHA، وتحاول تعمل Brute Force. وكمان تعرف تكتب ده في تقرير بشكل احترافي.
